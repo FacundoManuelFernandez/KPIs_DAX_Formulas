@@ -5,3 +5,4 @@ Las medidas expuestas son las siguientes:
 - Beneficio Promedio por Aplicación Concretada de Club de Beneficios
 - Ratio de Descuentos Especiales por Ventas (x100)
 - Promedio de Cuotas Concretadas
+- Cantidad de ventas con al menos un (1) Descuento Automático
