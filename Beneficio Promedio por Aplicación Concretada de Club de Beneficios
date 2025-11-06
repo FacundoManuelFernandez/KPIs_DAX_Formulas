@@ -1,0 +1,26 @@
+Beneficio Promedio por Aplicación Concretada de Club de Beneficios =
+VAR CantAplicaciones =
+    CALCULATE(
+        COUNTROWS('TablaDescuentos'),
+        'TablaDescuentos'[Estado de descuento] = "Aplicado",
+        TREATAS({"Club de Beneficios"}, 'TablaClasificacionDescuentos'[Tipo de descuento])
+    )
+
+VAR CantAnulaciones =
+    CALCULATE(
+        COUNTROWS('TablaDescuentos'),
+        'TablaDescuentos'[Estado de descuento] = "Anulado",
+        TREATAS({"Club de Beneficios"}, 'TablaClasificacionDescuentos'[Tipo de descuento])
+    )
+
+VAR CantAplicacionesConcretadas = 
+    CantAplicaciones - CantAnulaciones
+
+VAR BeneficioOtorgado =
+    CALCULATE(
+        SUM('TablaDescuentos'[$DescuentoOtorgado]),
+        TREATAS({"Club de Beneficios"}, 'TablaClasificacionDescuentos'[Tipo de descuento])
+    )
+
+RETURN
+DIVIDE(BeneficioOtorgado, CantAplicacionesConcretadas, BLANK())
