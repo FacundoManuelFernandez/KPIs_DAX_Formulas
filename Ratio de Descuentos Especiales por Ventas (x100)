@@ -17,14 +17,14 @@ VAR VentasConcretadas =
 VAR DescuentosAplicadosEspeciales =
     CALCULATE(
         COUNTROWS('TablaDescuentos'),
-        'TablaClasificacionDescuentos'[Tipo de descuento] = "Especial",
+        'TablaClasificacionDescuentos'[Tipo de aplicación] = "Especial",
         'TablaDescuentos'[Estado de descuento] = "Aplicado"
     )
 
 VAR DescuentosAnuladosEspeciales =
     CALCULATE(
         COUNTROWS('TablaDescuentos'),
-        'TablaClasificacionDescuentos'[Tipo de descuento] = "Especial",
+        'TablaClasificacionDescuentos'[Tipo de aplicación] = "Especial",
         'TablaDescuentos'[Estado de descuento] = "Anulado"
     )
 
