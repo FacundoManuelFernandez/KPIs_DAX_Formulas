@@ -1,0 +1,41 @@
+Promedio de Cuotas Concretadas = 
+VAR PagosConCuotas =
+    ADDCOLUMNS(
+        'TablaPagos',
+        "CuotaReal",
+        LOOKUPVALUE(
+            'TablaClasificacionCuotas'[Cuotas Reales],
+            'TablaClasificacionCuotas'[Cuotas S/Clasificacion Sistema],
+            'TablaPagos'[Cantidad de Cuotas]
+        )
+    )
+VAR CuotasPonderadas =
+    SUMX(
+        PagosConCuotas,
+        VAR CuotaReal = [CuotaReal]
+        VAR PagosConcretados = 'TablaPagos'[Cantidad de pagos en cuotas realizados] - 'TablaPagos'[Cantidad de pagos en cuotas anulados]
+        RETURN
+            IF(
+                NOT(ISBLANK(CuotaReal)), 
+                CuotaReal * PagosConcretados,
+                0
+            )
+    )
+VAR TotalPagosConcretados =
+    SUMX(
+        PagosConCuotas,
+        VAR CuotaReal = [CuotaReal]
+        VAR PagosConcretados = 'TablaPagos'[Cantidad de pagos en cuotas realizados] - 'TablaPagos'[Cantidad de pagos en cuotas anulados]
+        RETURN
+            IF(
+                NOT(ISBLANK(CuotaReal)),
+                PagosConcretados,
+                0
+            )
+    )
+RETURN
+    IF(
+        TotalPagosConcretados = 0,
+        BLANK(),
+        DIVIDE(CuotasPonderadas, TotalPagosConcretados)
+    )
