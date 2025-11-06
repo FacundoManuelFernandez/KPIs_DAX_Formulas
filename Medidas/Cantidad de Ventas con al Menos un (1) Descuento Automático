@@ -1,8 +1,0 @@
-Cantidad de Ventas con al Menos un Descuento Automático :=
-CALCULATE(
-    DISTINCTCOUNT('TablaDescuentos'[ID Transaccion]),
-    'TablaDescuentos'[TipoTransaccion] = "Venta",
-    KEEPFILTERS(
-        TREATAS({"Automático"}, 'TablaClasificacionDescuentos'[Tipo de aplicación])
-    )
-)
