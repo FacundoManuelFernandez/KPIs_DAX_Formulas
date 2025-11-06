@@ -1,0 +1,33 @@
+Índice de rendimiento (venta/pagos concretados) sobre variable "x" =
+VAR PagosRealizados =
+    CALCULATE(
+        COUNTROWS('TablaPagos'),
+        'TablaPagos'[Estado de pago] = "Realizado"
+    )
+VAR PagosAnulados =
+    CALCULATE(
+        COUNTROWS('TablaPagos'),
+        'TablaPagos'[Estado de pago] = "Anulado"
+    )
+VAR PagosConcretados = PagosRealizados - PagosAnulados
+
+VAR SharePagosConcretados =
+    DIVIDE(
+        PagosConcretados,
+        CALCULATE(
+            PagosConcretados,
+            REMOVEFILTERS('TablaClasificacionVariables'[Variable X])
+        )
+    )
+
+VAR ShareFacturacion =
+    DIVIDE(
+        SUM('TablaPagos'[$PagoNeto]),
+        CALCULATE(
+            SUM('TablaPagos'[$PagoNeto]),
+            REMOVEFILTERS('TablaClasificacionVariables'[Variable X])
+        )
+    )
+
+RETURN
+    DIVIDE(ShareFacturacion, SharePagosConcretados)
