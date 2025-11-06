@@ -1,4 +1,4 @@
-Ratio de Descuentos Especiales por Ventas (x100) =
+Ratio de Descuentos Especiales (por c/100 Ventas) =
 VAR CantVentas =
     CALCULATE(
         COUNTROWS('TablaTransacciones'),
