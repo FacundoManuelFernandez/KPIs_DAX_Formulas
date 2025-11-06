@@ -1,12 +1,16 @@
-Este repositorio contiene una serie de medidas (KPIs) formuladas en DAX para el análisis de ventas y descuentos. Como criterio de selección se eligieron métricas que representaran una variedad de formas de medición (conteos, ratios, índices, tasas, etc.) y que asimismo implicaran cierta complejidad en su codificación. Para facilitar la lectura del repositorio no se publican medidas similares o cuyo código no aportara algo novedoso o sustancial en relación a lo ya expuesto. Es necesario aclarar que la construcción de estos indicadores obedece a necesidades específicas de negocio, por lo que su formulación puede variar de uno a otro. Se presentan bajo una forma genérica para que pueda ser replicados
+Este repositorio contiene una serie de medidas (KPIs) formuladas en DAX para el análisis de ventas y descuentos.
 
-Las medidas expuestas son las siguientes:
+Como criterio de selección se incluyeron métricas que representan distintas formas de medición (ratios, índices, tasas, etc.) sobre diferentes dimensiones (cantidades, montos, proporciones). Se priorizaron fórmulas que aportan valor por su complejidad o por patrones de cálculo reutilizables. En ese sentido, para mantener la sobriedad del repositoriono se publicaron medidas redundantes o cuyo código no aportara información novedosa o sustancial.
 
-- Beneficio Promedio por Aplicación Concretada de Club de Beneficios
-- Ratio de Descuentos Especiales por Ventas (x100)
-- Promedio de Cuotas Concretadas
-- Proporción de Ventas con un Descuento Automático o más (%)
-- Tasa de descuentos especiales (sobre descuentos concretados)
-- Cantidad de Ventas con Acumulación de Descuento Club de Beneficios + Otro Descuento
-- Distribución interna de descuentos del Club de Beneficios (%)
-- Índice de rendimiento (venta-pagos concretados) sobre variable "x"
+Es importante aclarar que la construcción de los indicadores responde a necesidades de negocio específicas: por eso su formulación puede variar según el contexto y el modelo de datos. Cada medida incluye comentarios explicativos que detallan su lógica paso a paso.
+
+Las medidas expuestas son las siguientes (dispuestas en orden alfabético):
+
+1. Beneficio Promedio por Aplicación Concretada de Club de Beneficios
+2. Cantidad de Ventas con Acumulación de Descuento Club de Beneficios + Otro Descuento
+3. Distribución interna de descuentos del Club de Beneficios (%)
+4. Índice de rendimiento (venta/pagos concretados) sobre variable "x"
+5. Promedio de Cuotas Concretadas
+6. Proporción de Ventas con un Descuento Automático o más (%)
+7. Ratio de Descuentos Especiales por Ventas (x100)
+8. Tasa de descuentos especiales (sobre descuentos concretados)
