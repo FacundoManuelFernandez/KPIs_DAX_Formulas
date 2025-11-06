@@ -1,0 +1,37 @@
+Tasa de descuentos especiales sobre descuentos concretados = 
+VAR Aplicado_Especial =
+    CALCULATE(
+        COUNTROWS('TablaDescuentos'),
+        'TablaClasificacionDescuentos'[Tipo de aplicación] = "Especial",
+        'TablaDescuentos'[Estado de descuento] = "Aplicado"
+    )
+
+VAR Anulado_Especial =
+    CALCULATE(
+        COUNTROWS('TablaDescuentos'),
+        'TablaClasificacionDescuentos'[Tipo de aplicación] = "Especial",
+        'TablaDescuentos'[Estado de descuento] = "Anulado"
+    )
+
+VAR Concretados_Especial = Aplicado_Especial - Anulado_Especial
+
+VAR TotalAplicado =
+    CALCULATE(
+        COUNTROWS('TablaDescuentos'),
+        'TablaDescuentos'[Estado de descuento] = "Aplicado"
+    )
+
+VAR TotalAnulado =
+    CALCULATE(
+        COUNTROWS('TablaDescuentos'),
+        'TablaDescuentos'[Estado de descuento] = "Anulado"
+    )
+
+VAR DescuentosTotales = TotalAplicado - TotalAnulado
+
+RETURN
+IF(
+    DescuentosTotales = 0,
+    BLANK(),
+    DIVIDE(Concretados_Especial, DescuentosTotales)
+)
