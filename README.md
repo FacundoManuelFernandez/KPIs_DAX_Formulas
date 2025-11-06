@@ -5,8 +5,8 @@ Las medidas expuestas son las siguientes:
 - Beneficio Promedio por Aplicación Concretada de Club de Beneficios
 - Ratio de Descuentos Especiales por Ventas (x100)
 - Promedio de Cuotas Concretadas
-- Cantidad de ventas con al menos un (1) Descuento Automático
+- Proporción de Ventas con un Descuento Automático o más (%)
 - Tasa de descuentos especiales (sobre descuentos concretados)
 - Cantidad de Ventas con Acumulación de Descuento Club de Beneficios + Otro Descuento
-- Proporción de descuentos internos al Club de Beneficios (%)
+- Distribución de descuentos interna al Club de Beneficios (%)
 - Índice de rendimiento (venta-pagos concretados) sobre variable "x"
