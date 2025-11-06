@@ -8,5 +8,5 @@ Las medidas expuestas son las siguientes:
 - Proporción de Ventas con un Descuento Automático o más (%)
 - Tasa de descuentos especiales (sobre descuentos concretados)
 - Cantidad de Ventas con Acumulación de Descuento Club de Beneficios + Otro Descuento
-- Distribución de descuentos interna al Club de Beneficios (%)
+- Distribución interna de descuentos del Club de Beneficios (%)
 - Índice de rendimiento (venta-pagos concretados) sobre variable "x"
