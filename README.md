@@ -8,3 +8,4 @@ Las medidas expuestas son las siguientes:
 - Cantidad de ventas con al menos un (1) Descuento Automático
 - Tasa de descuentos especiales (sobre descuentos concretados)
 - Cantidad de Ventas con Acumulación de Descuento Club de Beneficios + Otro Descuento
+- Proporción de descuentos internos al Club de Beneficios (%)
