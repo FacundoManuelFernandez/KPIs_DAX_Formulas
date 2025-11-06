@@ -1,4 +1,4 @@
-Proporción de descuentos internos al Club de Beneficios (%) =
+Distribución interna de descuentos del Club de Beneficios (%) =
 VAR BeneficioDescuentoClubBeneficios =
     CALCULATE(
         SUM('TablaDescuentos'[$DescuentoOtorgado]),
