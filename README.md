@@ -9,3 +9,4 @@ Las medidas expuestas son las siguientes:
 - Tasa de descuentos especiales (sobre descuentos concretados)
 - Cantidad de Ventas con Acumulación de Descuento Club de Beneficios + Otro Descuento
 - Proporción de descuentos internos al Club de Beneficios (%)
+- Índice de rendimiento (venta-pagos concretados) sobre variable "x"
