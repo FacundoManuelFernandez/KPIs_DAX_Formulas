@@ -6,3 +6,4 @@ Las medidas expuestas son las siguientes:
 - Ratio de Descuentos Especiales por Ventas (x100)
 - Promedio de Cuotas Concretadas
 - Cantidad de ventas con al menos un (1) Descuento Automático
+- Tasa de descuentos especiales (sobre descuentos concretados)
