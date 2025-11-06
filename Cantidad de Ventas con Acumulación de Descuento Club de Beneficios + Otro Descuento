@@ -1,7 +1,6 @@
 Cantidad de Ventas con Acumulación de Descuento Club de Beneficios + Otro Descuento = 
 CALCULATE(
     DISTINCTCOUNT('TablaDescuentos'[ID Transaccion]),
-    'TablaDescuentos'[Estado de descuento] = "Aplicado",
     FILTER(
         VALUES('TablaDescuentos'[ID Transaccion]),
         VAR IDActual = 'TablaDescuentos'[ID Transaccion]
