@@ -12,5 +12,5 @@ Las medidas expuestas son las siguientes (dispuestas en orden alfabético):
 4. Índice de rendimiento (venta/pagos concretados) sobre variable "x"
 5. Promedio de Cuotas Concretadas
 6. Proporción de Ventas con un Descuento Automático o más (%)
-7. Ratio de Descuentos Especiales por Ventas (x100)
+7. Ratio de Descuentos Especiales (por c/100 Ventas)
 8. Tasa de descuentos especiales (sobre descuentos concretados)
