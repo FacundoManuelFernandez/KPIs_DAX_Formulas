@@ -1,0 +1,16 @@
+Proporción de descuentos interna al Club de Beneficios (%) =
+VAR BeneficioDescuentoClubBeneficios =
+    CALCULATE(
+        SUM('TablaDescuentos'[$DescuentoOtorgado]),
+        TREATAS({"Club de Beneficios"}, 'TablaClasificacionDescuentos'[Tipo de descuento])
+    )
+
+VAR TotalBeneficioDescuentoClubBeneficios =
+    CALCULATE(
+        SUM('TablaDescuentos'[$DescuentoOtorgado]),
+        ALL('TablaDescuentos'),
+        TREATAS({"Club de Beneficios"}, 'TablaClasificacionDescuentos'[Tipo de descuento])
+    )
+
+RETURN
+    DIVIDE(BeneficioDescuentoClubBeneficios, TotalBeneficioDescuentoClubBeneficios, BLANK())
