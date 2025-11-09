@@ -1,22 +1,32 @@
-Promedio de Cuotas Concretadas = 
+Promedio de Cuotas Concretadas =
 VAR PagosConCuotas =
     ADDCOLUMNS(
         'TablaPagos',
         "CuotaReal",
-        LOOKUPVALUE(
-            'TablaClasificacionCuotas'[Cuotas Reales],
-            'TablaClasificacionCuotas'[Cuotas S/Clasificacion Sistema],
-            'TablaPagos'[Cantidad de Cuotas]
-        )
+            LOOKUPVALUE(
+                'TablaClasificacionCuotas'[Cuotas Reales],
+                'TablaClasificacionCuotas'[Cuotas S/Clasificacion Sistema],
+                'TablaPagos'[Cantidad de Cuotas]
+            ),
+        "PagosRealizados",
+            CALCULATE(
+                COUNTROWS('TablaPagos'),
+                'TablaPagos'[Estado de pago] = "Realizado"
+            ),
+        "PagosAnulados",
+            CALCULATE(
+                COUNTROWS('TablaPagos'),
+                'TablaPagos'[Estado de pago] = "Anulado"
+            )
     )
 VAR CuotasPonderadas =
     SUMX(
         PagosConCuotas,
         VAR CuotaReal = [CuotaReal]
-        VAR PagosConcretados = 'TablaPagos'[Cantidad de pagos en cuotas realizados] - 'TablaPagos'[Cantidad de pagos en cuotas anulados]
+        VAR PagosConcretados = [PagosRealizados] - [PagosAnulados]
         RETURN
             IF(
-                NOT(ISBLANK(CuotaReal)), 
+                NOT(ISBLANK(CuotaReal)),
                 CuotaReal * PagosConcretados,
                 0
             )
@@ -25,7 +35,7 @@ VAR TotalPagosConcretados =
     SUMX(
         PagosConCuotas,
         VAR CuotaReal = [CuotaReal]
-        VAR PagosConcretados = 'TablaPagos'[Cantidad de pagos en cuotas realizados] - 'TablaPagos'[Cantidad de pagos en cuotas anulados]
+        VAR PagosConcretados = [PagosEfectuados] - [PagosAnulados]
         RETURN
             IF(
                 NOT(ISBLANK(CuotaReal)),
@@ -39,3 +49,4 @@ RETURN
         BLANK(),
         DIVIDE(CuotasPonderadas, TotalPagosConcretados)
     )
+
