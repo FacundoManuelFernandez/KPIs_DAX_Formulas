@@ -14,3 +14,5 @@ Las medidas expuestas son las siguientes (dispuestas en orden alfabético):
 6. Proporción de Ventas con un Descuento Automático o más (%)
 7. Ratio de Descuentos Especiales (por c/100 Ventas)
 8. Tasa de descuentos especiales (sobre descuentos concretados)
+
+Dentro del repositorio encontrarán la carpeta que contiene las fórmulas de las medidas susodichas y un documento que detalla las tablas y columnas utilizadas junto con el modelo de datos.
