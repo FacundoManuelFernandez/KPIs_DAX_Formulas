@@ -27,8 +27,11 @@ TablaClasificacionCuotas:
 Relaciones entre tablas:
 
 TablaDescuentos * <-- 1 TablaClasificacionDescuentos [a partir de 'Nombre Descuento']
+
 TablaDescuentos * <-- 1 TablaTransacciones [a partir de 'ID Transaccion']
+
 TablaPagos * <-- 1 TablaClasificacionCuotas [a partir de 'Cantidad de Cuotas' y 'Cuotas S/Clasificacion Sistema']
+
 TablaPagos * <-- 1 TablaTransacciones [a partir de 'ID Transaccion']
 
 
