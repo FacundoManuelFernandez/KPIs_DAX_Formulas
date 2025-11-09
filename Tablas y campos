@@ -1,0 +1,23 @@
+A continuación se detallan los tablas y sus columnas utilizadas en las fórmulas.
+
+TablaTransacciones:
+ -TipoTransaccion: Venta/Devolución
+
+TablaDescuentos:
+- ID Transaccion: código que identifa unívocamente cada transacción
+- Estado de descuento: Aplicado/Anulado
+- Nombre Descuento: Nombre correspondiente al descuento otorgado.
+- $DescuentoOtorgado: Monto de descuento otorgado (en $)
+
+TablaClasificacionDescuentos:
+- Tipo de aplicacion: Automático/Especial
+- Tipo de descuento: Club de Beneficios (entre otros).
+
+TablaPagos:
+- Estado de pago: Realizado/Anulado
+- $PagoNeto: Monto pagado (en $)
+- Cantidad de cuotas: Cantidad de cuotas en las que se realizó el pago (de acuerdo a la codificación del sistema, que puede no coincidir con la cantidad de cuotas real).
+
+TablaClasificacionCuotas:
+- CuotasReales: Cantidad de cuotas en las que se pagó realmente.
+- Cuotas S/Clasificacion Sistema: Cantidad de cuotas en las que se realizó el pago de acuerdo a la codificación del sistema.
