@@ -11,7 +11,7 @@ Las medidas expuestas son las siguientes (dispuestas en orden alfabético):
 3. Distribución interna de descuentos del Club de Beneficios (%)
 4. Índice de rendimiento (venta/pagos concretados) sobre variable "x"
 5. Promedio de Cuotas Concretadas
-6. Proporción de Ventas con un Descuento Automático o más (%)
+6. Proporción de Ventas con Descuento Automático (%)
 7. Ratio de Descuentos Especiales (por c/100 Ventas)
 8. Tasa de descuentos especiales (sobre descuentos concretados)
 
