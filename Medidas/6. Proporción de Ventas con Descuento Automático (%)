@@ -1,4 +1,4 @@
-Proporción de Ventas con un Descuento Automático o más (%) =
+Proporción de Ventas con Descuento Automático (%) =
 VAR VentasTotales =
     CALCULATE(
         COUNTROWS('TablaTransacciones'),
