@@ -8,7 +8,7 @@ TablaDescuentos:
 - ID Transaccion: código que identifica unívocamente cada transacción
 - Estado de descuento: Aplicado/Anulado
 - Nombre Descuento: Nombre correspondiente al descuento otorgado.
-- $DescuentoOtorgado: Monto de descuento otorgado (en $)
+- '$DescuentoOtorgado': Monto de descuento otorgado (en $)
 
 TablaClasificacionDescuentos:
 - Tipo de aplicacion: Automático/Especial
@@ -17,7 +17,7 @@ TablaClasificacionDescuentos:
 TablaPagos:
 - ID Transaccion: código que identifica unívocamente cada transacción
 - Estado de pago: Realizado/Anulado
-- $PagoNeto: Monto pagado (en $)
+- '$PagoNeto': Monto pagado (en $)
 - Cantidad de cuotas: Cantidad de cuotas en las que se realizó el pago (de acuerdo a la codificación del sistema, que puede no coincidir con la cantidad de cuotas real).
 
 TablaClasificacionCuotas:
