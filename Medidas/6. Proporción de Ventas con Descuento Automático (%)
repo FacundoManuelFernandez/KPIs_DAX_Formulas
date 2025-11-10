@@ -2,13 +2,13 @@ Proporción de Ventas con Descuento Automático (%) =
 VAR VentasTotales =
     CALCULATE(
         COUNTROWS('TablaTransacciones'),
-        'TablaTransacciones'[TipoTransaccion] = "Venta"
+        'TablaTransacciones'[Tipo de Transaccion] = "Venta"
     )
 
 VAR VentasConDescuentoAutomatico =
     CALCULATE(
         DISTINCTCOUNT('TablaDescuentos'[ID Transaccion]),
-        'TablaDescuentos'[TipoTransaccion] = "Venta",
+        'TablaDescuentos'[Tipo de Transaccion] = "Venta",
         KEEPFILTERS(
             TREATAS({"Automático"}, 'TablaClasificacionDescuentos'[Tipo de aplicación])
         )
