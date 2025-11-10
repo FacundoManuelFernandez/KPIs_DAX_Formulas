@@ -2,13 +2,13 @@ Ratio de Descuentos Especiales (por c/100 Ventas) =
 VAR CantVentas =
     CALCULATE(
         COUNTROWS('TablaTransacciones'),
-        'TablaTransacciones'[TipoTransaccion] = "Venta"
+        'TablaTransacciones'[Tipo de Transaccion] = "Venta"
     )
 
 VAR CantDevoluciones =
     CALCULATE(
         COUNTROWS('TablaTransacciones'),
-        'TablaTransacciones'[TipoTransaccion] = "Devolución"
+        'TablaTransacciones'[Tipo de Transaccion] = "Devolución"
     )
 
 VAR VentasConcretadas =
