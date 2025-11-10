@@ -35,7 +35,7 @@ VAR TotalPagosConcretados =
     SUMX(
         PagosConCuotas,
         VAR CuotaReal = [CuotaReal]
-        VAR PagosConcretados = [PagosEfectuados] - [PagosAnulados]
+        VAR PagosConcretados = [PagosRealizados] - [PagosAnulados]
         RETURN
             IF(
                 NOT(ISBLANK(CuotaReal)),
