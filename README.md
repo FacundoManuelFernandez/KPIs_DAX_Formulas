@@ -11,7 +11,7 @@ Las medidas expuestas son las siguientes (dispuestas en orden alfabético):
 3. **Distribución interna de descuentos del Club de Beneficios (%)**: mide la proporción del monto total de descuentos del Club que corresponde a cada segmento dentro de este programa.
 4. **Índice de rendimiento (monto/pagos concretados) sobre variable "x"**: mide el rendimiento de una variable determinada tomando como referencia la cantidad de pagos que tuvo y su participación sobre el monto total facturado. Un valor superior a 1 indica que, en promedio, los pagos asociados a esa variable tienen montos más altos que el promedio general.
 5. **Promedio de Cuotas Concretadas**: mide la cantidad promedio de cuotas correspondiente a los pagos concretados.
-6. **Proporción de Ventas con Descuento Automático (%)**: mide la proporción (en %) que representan las ventas con descuento automático sobre la totalidad de las ventas.
+6. **Proporción de Ventas con Descuento Automático (%)**: mide la proporción de ventas en las cuales se aplicó un descuento automático sobre el total de ventas registradas.
 7. **Ratio de Descuentos Especiales (por c/100 Ventas)**: mide cuántos descuentos especiales se concretan por cada 100 ventas realizadas. 
 8. **Tasa de descuentos especiales (sobre descuentos concretados)**: mide la proporción que representan los descuentos especiales sobre la totalidad de los descuentos concretados.
 
