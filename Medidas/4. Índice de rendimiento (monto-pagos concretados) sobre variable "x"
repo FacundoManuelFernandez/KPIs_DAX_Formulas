@@ -1,4 +1,4 @@
-Índice de rendimiento (venta/pagos concretados) sobre variable "x" =
+Índice de rendimiento (monto/pagos concretados) sobre variable "x" =
 VAR PagosRealizados =
     CALCULATE(
         COUNTROWS('TablaPagos'),
