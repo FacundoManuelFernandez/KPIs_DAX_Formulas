@@ -2,13 +2,13 @@ A continuación se detallan los tablas, sus relaciones y las columnas utilizadas
 
 TablaTransacciones:
 - ID Transaccion: código que identifica unívocamente cada transacción
-- TipoTransaccion: Venta/Devolución
+- Tipo de Transaccion: Venta/Devolución
 
 TablaDescuentos:
 - ID Transaccion: código que identifica unívocamente cada transacción
-- TipoTransaccion: Venta/Devolución
+- Tipo de Transaccion: Venta/Devolución
 - Estado de descuento: Aplicado/Anulado
-- Nombre Descuento: Nombre correspondiente al descuento otorgado.
+- Nombre de Descuento: Nombre correspondiente al descuento otorgado.
 - '$DescuentoOtorgado': Monto de descuento otorgado (en $)
 
 TablaClasificacionDescuentos:
@@ -22,7 +22,7 @@ TablaPagos:
 - Cantidad de cuotas: Cantidad de cuotas en las que se realizó el pago (de acuerdo a la codificación del sistema, que puede no coincidir con la cantidad de cuotas real).
 
 TablaClasificacionCuotas:
-- CuotasReales: Cantidad de cuotas en las que se pagó realmente.
+- Cuotas Reales: Cantidad de cuotas en las que se pagó realmente.
 - Cuotas S/Clasificacion Sistema: Cantidad de cuotas en las que se realizó el pago de acuerdo a la codificación del sistema.
 
 Relaciones entre tablas:
