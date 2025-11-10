@@ -8,14 +8,14 @@ CALCULATE(
             CALCULATE(
                 COUNTROWS('TablaDescuentos'),
                 'TablaDescuentos'[ID Transaccion] = IDActual,
-                'TablaDescuentos'[Nombre Descuento] = "Club de Beneficios",
+                'TablaDescuentos'[Nombre de descuento] = "Club de Beneficios",
                 'TablaDescuentos'[Estado de descuento] = "Aplicado"
             ) > 0
         VAR OtroDescuento = 
             CALCULATE(
                 COUNTROWS('TablaDescuentos'),
                 'TablaDescuentos'[ID Transaccion] = IDActual,
-                'TablaDescuentos'[Nombre Descuento] <> "Club de Beneficios",
+                'TablaDescuentos'[Nombre de descuento] <> "Club de Beneficios",
                 'TablaDescuentos'[Estado de descuento] = "Aplicado"
             ) > 0
         RETURN DtoClubBeneficios && OtroDescuento
