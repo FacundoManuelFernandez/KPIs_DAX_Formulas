@@ -6,7 +6,7 @@ VAR PagosConCuotas =
             LOOKUPVALUE(
                 'TablaClasificacionCuotas'[Cuotas Reales],
                 'TablaClasificacionCuotas'[Cuotas S/Clasificacion Sistema],
-                'TablaPagos'[Cantidad de Cuotas]
+                'TablaPagos'[Cantidad de cuotas]
             ),
         "PagosRealizados",
             CALCULATE(
