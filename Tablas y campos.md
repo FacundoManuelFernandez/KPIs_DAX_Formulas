@@ -6,7 +6,7 @@ TablaTransacciones:
 
 TablaDescuentos:
 - ID Transaccion: código que identifica unívocamente cada transacción
-- Tipo Transaccion: Venta/Devolución
+- TipoTransaccion: Venta/Devolución
 - Estado de descuento: Aplicado/Anulado
 - Nombre Descuento: Nombre correspondiente al descuento otorgado.
 - '$DescuentoOtorgado': Monto de descuento otorgado (en $)
