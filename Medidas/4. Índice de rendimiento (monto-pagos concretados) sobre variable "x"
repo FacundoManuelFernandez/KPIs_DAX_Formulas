@@ -1,3 +1,6 @@
+//Esta fórmula mide el rendimiento de una variable determinada tomando como referencia la cantidad de pagos que tuvo y su participación sobre el monto total facturado.
+//Un valor superior a 1 indica que, en promedio, los pagos asociados a esa variable tienen montos más altos que el promedio general.
+
 Índice de rendimiento (monto/pagos concretados) sobre variable "x" =
 VAR PagosRealizados =
     CALCULATE(
