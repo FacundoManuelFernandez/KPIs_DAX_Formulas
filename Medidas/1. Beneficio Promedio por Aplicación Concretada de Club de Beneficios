@@ -1,26 +1,28 @@
+//Esta fórmula mide el monto promedio de beneficio otorgado por los descuentos concretados (aplicados y no anulados) correspondientes al Club de Beneficios.
+
 Beneficio Promedio por Aplicación Concretada de Club de Beneficios =
-VAR CantAplicaciones =
+VAR CantAplicaciones = //Creamos una variable para evaluar la cantidad de aplicaciones de descuento del Club de Beneficios
     CALCULATE(
-        COUNTROWS('TablaDescuentos'),
-        'TablaDescuentos'[Estado de descuento] = "Aplicado",
-        TREATAS({"Club de Beneficios"}, 'TablaClasificacionDescuentos'[Tipo de descuento])
+        COUNTROWS('TablaDescuentos'), //Cuenta las filas (una por aplicación de descuento)
+        'TablaDescuentos'[Estado de descuento] = "Aplicado", //donde el estado del descuento sea "Aplicado"
+        TREATAS({"Club de Beneficios"}, 'TablaClasificacionDescuentos'[Tipo de descuento]) //filtra solo los del Club de Beneficios usando la relación con la tabla de dimensiones mediante TREATAS
     )
 
-VAR CantAnulaciones =
+VAR CantAnulaciones = //Creamos una variable para evaluar la cantidad de anulaciones de descuento del Club de Beneficios
     CALCULATE(
         COUNTROWS('TablaDescuentos'),
         'TablaDescuentos'[Estado de descuento] = "Anulado",
         TREATAS({"Club de Beneficios"}, 'TablaClasificacionDescuentos'[Tipo de descuento])
     )
 
-VAR CantAplicacionesConcretadas = 
+VAR CantAplicacionesConcretadas = //Creamos una variable que reste los descuentos aplicados y anulados, así se llega a los descuentos concretados
     CantAplicaciones - CantAnulaciones
 
-VAR BeneficioOtorgado =
+VAR BeneficioOtorgado = //Creamos una variable que calcula el beneficio otorgado para los descuentos del Club de Beneficios
     CALCULATE(
-        SUM('TablaDescuentos'[$DescuentoOtorgado]),
-        TREATAS({"Club de Beneficios"}, 'TablaClasificacionDescuentos'[Tipo de descuento])
+        SUM('TablaDescuentos'[$DescuentoOtorgado]), //Suma los montos de descuento otorgados
+        TREATAS({"Club de Beneficios"}, 'TablaClasificacionDescuentos'[Tipo de descuento]) //Los filtra para considerar solo los del Club de Beneficios
     )
 
 RETURN
-DIVIDE(BeneficioOtorgado, CantAplicacionesConcretadas, BLANK())
+DIVIDE(BeneficioOtorgado, CantAplicacionesConcretadas, BLANK()) //Divide el beneficio total por la cantidad de aplicaciones concretadas. Si no hay descuentos concretados devuelve BLANK
