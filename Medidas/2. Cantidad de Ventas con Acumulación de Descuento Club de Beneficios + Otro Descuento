@@ -1,23 +1,25 @@
+//Esta fórmula mide la cantidad de ventas en las que se aplicó simultaneamente un descuento del Club de Beneficios junto con otro descuento distinto.
+
 Cantidad de Ventas con Acumulación de Descuento Club de Beneficios + Otro Descuento = 
 CALCULATE(
-    DISTINCTCOUNT('TablaDescuentos'[ID Transaccion]),
+    DISTINCTCOUNT('TablaDescuentos'[ID Transaccion]), //Cuenta la cantidad de transacciones únicas (cada ID solo una vez)
     FILTER(
-        VALUES('TablaDescuentos'[ID Transaccion]),
-        VAR IDActual = 'TablaDescuentos'[ID Transaccion]
-        VAR DtoClubBeneficios = 
+        VALUES('TablaDescuentos'[ID Transaccion]), //Itera por cada ID de transacción de la tabla de descuentos
+        VAR IDActual = 'TablaDescuentos'[ID Transaccion] //Guarda el ID de transacción actual en la iteración
+        VAR DtoClubBeneficios = //Verifica si la transacción tiene al menos un descuento del Club de Beneficios aplicado
             CALCULATE(
                 COUNTROWS('TablaDescuentos'),
                 'TablaDescuentos'[ID Transaccion] = IDActual,
                 'TablaDescuentos'[Nombre de descuento] = "Club de Beneficios",
                 'TablaDescuentos'[Estado de descuento] = "Aplicado"
             ) > 0
-        VAR OtroDescuento = 
+        VAR OtroDescuento = //Verifica si la misma transacción tiene otro tipo de descuento aplicado distinto del Club de Beneficios
             CALCULATE(
                 COUNTROWS('TablaDescuentos'),
                 'TablaDescuentos'[ID Transaccion] = IDActual,
                 'TablaDescuentos'[Nombre de descuento] <> "Club de Beneficios",
                 'TablaDescuentos'[Estado de descuento] = "Aplicado"
             ) > 0
-        RETURN DtoClubBeneficios && OtroDescuento
+        RETURN DtoClubBeneficios && OtroDescuento //Devuelve VERDADERO solo si ambas condiciones se cumplen (hay ambos tipos de descuento aplicados)
     )
 )
