@@ -1,37 +1,39 @@
+//Esta fórmula mide la cantidad promedio de cuotas correspondiente a los pagos concretados.
+
 Promedio de Cuotas Concretadas =
-VAR PagosConCuotas =
+VAR PagosConCuotas = //Crea una tabla virtual que agrega columnas auxiliares al conjunto de pagos
     ADDCOLUMNS(
         'TablaPagos',
         "CuotaReal",
-            LOOKUPVALUE(
-                'TablaClasificacionCuotas'[Cuotas Reales],
-                'TablaClasificacionCuotas'[Cuotas S/Clasificacion Sistema],
-                'TablaPagos'[Cantidad de cuotas]
+            LOOKUPVALUE( //Busca la cantidad real de cuotas en la tabla de dimensiones, ya que la cantidad de cuotas en TablaPagos no siempre representa el valor real
+                'TablaClasificacionCuotas'[Cuotas Reales], //Trae el valor de Cuotas Reales de la Tabla de Dimensiones
+                'TablaClasificacionCuotas'[Cuotas S/Clasificacion Sistema], //Tomando como referencia Cuotas S/Clasificacion Sistema
+                'TablaPagos'[Cantidad de cuotas] //A partir del dato de Cantidad de cuotas de TablaPagos
             ),
-        "PagosRealizados",
+        "PagosRealizados", //Agrega una columna que contabiliza pagos realizados
             CALCULATE(
                 COUNTROWS('TablaPagos'),
                 'TablaPagos'[Estado de pago] = "Realizado"
             ),
-        "PagosAnulados",
+        "PagosAnulados", //Agrega una columna que contabiliza pagos anulados
             CALCULATE(
                 COUNTROWS('TablaPagos'),
                 'TablaPagos'[Estado de pago] = "Anulado"
             )
     )
-VAR CuotasPonderadas =
+VAR CuotasPonderadas = //Calcula la suma ponderada de las cuotas reales, ponderadas por los pagos concretados
     SUMX(
         PagosConCuotas,
-        VAR CuotaReal = [CuotaReal]
-        VAR PagosConcretados = [PagosRealizados] - [PagosAnulados]
+        VAR CuotaReal = [CuotaReal] //Traemos el dato de las Cuotas Reales
+        VAR PagosConcretados = [PagosRealizados] - [PagosAnulados] //Creamos una variable que calcula los pagos concretados
         RETURN
-            IF(
+            IF( //Evita cálculos con valores vacíos
                 NOT(ISBLANK(CuotaReal)),
-                CuotaReal * PagosConcretados,
+                CuotaReal * PagosConcretados, //Multiplica las cuotas reales por los pagos concretados
                 0
             )
     )
-VAR TotalPagosConcretados =
+VAR TotalPagosConcretados = //Suma total de pagos concretados (donde haya CuotaReal)
     SUMX(
         PagosConCuotas,
         VAR CuotaReal = [CuotaReal]
@@ -43,10 +45,10 @@ VAR TotalPagosConcretados =
                 0
             )
     )
-RETURN
+RETURN //Devuelve el promedio ponderado: CuotasPonderadas / TotalPagosConcretados
     IF(
         TotalPagosConcretados = 0,
-        BLANK(),
+        BLANK(), //Evita divisiones por cero
         DIVIDE(CuotasPonderadas, TotalPagosConcretados)
     )
 
