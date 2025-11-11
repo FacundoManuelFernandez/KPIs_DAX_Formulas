@@ -1,18 +1,20 @@
+//Esta fórmula mide la proporción de ventas en las cuales se aplicó un descuento automático sobre el total de ventas registradas.
+
 Proporción de Ventas con Descuento Automático (%) =
-VAR VentasTotales =
+VAR VentasTotales = //Creamos una variable para contar la cantidad de ventas
     CALCULATE(
-        COUNTROWS('TablaTransacciones'),
-        'TablaTransacciones'[Tipo de Transaccion] = "Venta"
+        COUNTROWS('TablaTransacciones'), //Cuenta la cantidad de filas
+        'TablaTransacciones'[Tipo de Transaccion] = "Venta" //Donde el tipo de transacción sea "venta"
     )
 
-VAR VentasConDescuentoAutomatico =
+VAR VentasConDescuentoAutomatico = //Creamos una variable para contar la cantidad de ventas con descuento automático
     CALCULATE(
-        DISTINCTCOUNT('TablaDescuentos'[ID Transaccion]),
+        DISTINCTCOUNT('TablaDescuentos'[ID Transaccion]), //Cuenta cada transacción de la TablaDescuentos solo una vez
         'TablaDescuentos'[Tipo de Transaccion] = "Venta",
-        KEEPFILTERS(
-            TREATAS({"Automático"}, 'TablaClasificacionDescuentos'[Tipo de aplicación])
+        KEEPFILTERS( //Mantiene los filtros de contexto existentes en lugar de reemplazarlos
+            TREATAS({"Automático"}, 'TablaClasificacionDescuentos'[Tipo de aplicación]) //Filtra que sea un descuento "automático" utilizando la relación con una tabla de dimensiones
         )
     )
 
 RETURN
-    DIVIDE(VentasConDescuentoAutomatico, VentasTotales, BLANK())
+    DIVIDE(VentasConDescuentoAutomatico, VentasTotales, BLANK()) //Divide la cantidad de ventas con descuento automático sobre el total de las ventas
