@@ -2,35 +2,35 @@
 //Un valor superior a 1 indica que, en promedio, los pagos asociados a esa variable tienen montos más altos que el promedio general.
 
 Índice de rendimiento (monto/pagos concretados) sobre variable "x" =
-VAR PagosRealizados =
+VAR PagosRealizados = //Creamos una variable que cuenta la cantidad de pagos realizados
     CALCULATE(
-        COUNTROWS('TablaPagos'),
-        'TablaPagos'[Estado de pago] = "Realizado"
+        COUNTROWS('TablaPagos'), //Cuenta las filas de la tabla de pagos
+        'TablaPagos'[Estado de pago] = "Realizado" //Donde el estado del pago sea "Realizado"
     )
-VAR PagosAnulados =
+VAR PagosAnulados = //Creamos una variable que cuenta la cantidad de pagos anulados
     CALCULATE(
         COUNTROWS('TablaPagos'),
         'TablaPagos'[Estado de pago] = "Anulado"
     )
-VAR PagosConcretados = PagosRealizados - PagosAnulados
+VAR PagosConcretados = PagosRealizados - PagosAnulados //Esta variable permite calcular los pagos concretados (realizados - anulados)
 
-VAR SharePagosConcretados =
+VAR SharePagosConcretados = //Calcula el porcentaje que representan los pagos concretados del contexto actual sobre el total general
     DIVIDE(
-        PagosConcretados,
+        PagosConcretados, //Numerador: pagos concretados en el contexto actual de la variable X
         CALCULATE(
-            PagosConcretados,
-            REMOVEFILTERS('TablaClasificacionVariables'[Variable X])
+            PagosConcretados, //Denominador: pagos concretados totales
+            REMOVEFILTERS('TablaClasificacionVariables'[Variable X]) //Elimina los filtros de la variable X para obtener el total general
         )
     )
 
-VAR ShareFacturacion =
+VAR ShareFacturacion = //Calcula el porcentaje que representa el monto facturado del contexto actual sobre el total general
     DIVIDE(
-        SUM('TablaPagos'[$PagoNeto]),
+        SUM('TablaPagos'[$PagoNeto]), //Numerador: monto neto de pagos en el contexto actual
         CALCULATE(
-            SUM('TablaPagos'[$PagoNeto]),
+            SUM('TablaPagos'[$PagoNeto]), //Denominador: monto total sin filtrar por variable X
             REMOVEFILTERS('TablaClasificacionVariables'[Variable X])
         )
     )
 
 RETURN
-    DIVIDE(ShareFacturacion, SharePagosConcretados)
+    DIVIDE(ShareFacturacion, SharePagosConcretados) //Devuelve la proporción del share de facturación sobre el share de pagos concretados
