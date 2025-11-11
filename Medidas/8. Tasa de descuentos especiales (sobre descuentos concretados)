@@ -1,37 +1,39 @@
+//Esta fórmula mide la proporción que representan los descuentos especiales sobre la totalidad de los descuentos concretados.
+
 Tasa de descuentos especiales sobre descuentos concretados = 
-VAR Aplicado_Especial =
+VAR Aplicado_Especial = //Creamos una variable que cuenta la cantidad de descuentos especiales aplicados
     CALCULATE(
-        COUNTROWS('TablaDescuentos'),
-        'TablaClasificacionDescuentos'[Tipo de aplicación] = "Especial",
-        'TablaDescuentos'[Estado de descuento] = "Aplicado"
+        COUNTROWS('TablaDescuentos'), //Cuenta la cantidad de descuentos
+        'TablaClasificacionDescuentos'[Tipo de aplicación] = "Especial", //Donde el tipo de aplicación sea "especial"
+        'TablaDescuentos'[Estado de descuento] = "Aplicado" //Y el estado de descuento "aplicado"
     )
 
-VAR Anulado_Especial =
+VAR Anulado_Especial = //Creamos una variable que cuenta la cantidad de descuentos especiales anulados
     CALCULATE(
         COUNTROWS('TablaDescuentos'),
         'TablaClasificacionDescuentos'[Tipo de aplicación] = "Especial",
         'TablaDescuentos'[Estado de descuento] = "Anulado"
     )
 
-VAR Concretados_Especial = Aplicado_Especial - Anulado_Especial
+VAR Concretados_Especial = Aplicado_Especial - Anulado_Especial //Calcula los descuentos especiales concretados
 
-VAR TotalAplicado =
+VAR TotalAplicado = //Creamos una variable que cuenta la cantidad de descuentos aplicados
     CALCULATE(
         COUNTROWS('TablaDescuentos'),
         'TablaDescuentos'[Estado de descuento] = "Aplicado"
     )
 
-VAR TotalAnulado =
+VAR TotalAnulado = //Creamos una variable que cuenta la cantidad de descuentos anulados
     CALCULATE(
         COUNTROWS('TablaDescuentos'),
         'TablaDescuentos'[Estado de descuento] = "Anulado"
     )
 
-VAR DescuentosTotales = TotalAplicado - TotalAnulado
+VAR DescuentosTotales = TotalAplicado - TotalAnulado //Calculamos la cantidad de descuentos concretados
 
 RETURN
 IF(
     DescuentosTotales = 0,
-    BLANK(),
-    DIVIDE(Concretados_Especial, DescuentosTotales)
+    BLANK(), //Si la cantidad de descuentos totales (denominador) es 0, devuelve BLANK
+    DIVIDE(Concretados_Especial, DescuentosTotales) //Divide los descuentos especiales concretados sobre los descuentos totales concretados
 )
