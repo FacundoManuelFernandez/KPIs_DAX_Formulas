@@ -1,4 +1,4 @@
-Esta fórmula mide la proporción del monto total de descuentos del Club que corresponde a cada segmento dentro de este programa.
+//Esta fórmula mide la proporción del monto total de descuentos del Club que corresponde a cada segmento dentro de este programa.
 
 Distribución interna de descuentos del Club de Beneficios (%) =
 VAR BeneficioDescuentoClubBeneficios = //Creamos una variable que calcula el monto total del Club dentro del contexto actual del informe
