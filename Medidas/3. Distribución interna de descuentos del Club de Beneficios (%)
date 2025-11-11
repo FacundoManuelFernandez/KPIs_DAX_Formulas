@@ -1,16 +1,18 @@
+Esta fórmula mide la proporción del monto total de descuentos del Club que corresponde a cada segmento dentro de este programa.
+
 Distribución interna de descuentos del Club de Beneficios (%) =
-VAR BeneficioDescuentoClubBeneficios =
+VAR BeneficioDescuentoClubBeneficios = //Creamos una variable que calcula el monto total del Club dentro del contexto actual del informe
+    CALCULATE(
+        SUM('TablaDescuentos'[$DescuentoOtorgado]), //Suma los montos de descuento
+        TREATAS({"Club de Beneficios"}, 'TablaClasificacionDescuentos'[Tipo de descuento]) //Filtra por ese tipo de descuento usando la relación con la tabla de dimensiones
+    )
+
+VAR TotalBeneficioDescuentoClubBeneficios = //Creamos una variable que calcule el monto total de descuentos del Club de Beneficios
     CALCULATE(
         SUM('TablaDescuentos'[$DescuentoOtorgado]),
+        ALL('TablaDescuentos'), //Elimina los filtros de contexto para que se calcule solo el total general de Club de Beneficios
         TREATAS({"Club de Beneficios"}, 'TablaClasificacionDescuentos'[Tipo de descuento])
     )
 
-VAR TotalBeneficioDescuentoClubBeneficios =
-    CALCULATE(
-        SUM('TablaDescuentos'[$DescuentoOtorgado]),
-        ALL('TablaDescuentos'),
-        TREATAS({"Club de Beneficios"}, 'TablaClasificacionDescuentos'[Tipo de descuento])
-    )
-
-RETURN
+RETURN //Devuelve la división del monto de descuentos Club de Beneficios sobre el monto total del Club de Beneficios
     DIVIDE(BeneficioDescuentoClubBeneficios, TotalBeneficioDescuentoClubBeneficios, BLANK())
