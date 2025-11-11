@@ -1,35 +1,37 @@
+//Esta fórmula mide cuántos descuentos especiales se concretan por cada 100 ventas realizadas.
+
 Ratio de Descuentos Especiales (por c/100 Ventas) =
-VAR CantVentas =
+VAR CantVentas = //Creamos una variable para contar la cantidad de ventas
     CALCULATE(
         COUNTROWS('TablaTransacciones'),
         'TablaTransacciones'[Tipo de Transaccion] = "Venta"
     )
 
-VAR CantDevoluciones =
+VAR CantDevoluciones = //Creamos una variable para contar la cantidad de Devoluciones
     CALCULATE(
         COUNTROWS('TablaTransacciones'),
         'TablaTransacciones'[Tipo de Transaccion] = "Devolución"
     )
 
-VAR VentasConcretadas =
+VAR VentasConcretadas = //Calculamos la cantidad de ventas concretadas restando las devoluciones
     CantVentas - CantDevoluciones
 
-VAR DescuentosAplicadosEspeciales =
+VAR DescuentosAplicadosEspeciales = //Creamos una variable para contar los descuentos aplicados especiales
     CALCULATE(
-        COUNTROWS('TablaDescuentos'),
-        'TablaClasificacionDescuentos'[Tipo de aplicación] = "Especial",
-        'TablaDescuentos'[Estado de descuento] = "Aplicado"
+        COUNTROWS('TablaDescuentos'), //Cuenta los descuentos
+        'TablaClasificacionDescuentos'[Tipo de aplicación] = "Especial", //Donde el tipo de aplicación sea "Especial"
+        'TablaDescuentos'[Estado de descuento] = "Aplicado" //Y el estado sea "Aplicado"
     )
 
-VAR DescuentosAnuladosEspeciales =
+VAR DescuentosAnuladosEspeciales = //Creamos una variable para contar los descuentos anulados especiales
     CALCULATE(
         COUNTROWS('TablaDescuentos'),
         'TablaClasificacionDescuentos'[Tipo de aplicación] = "Especial",
         'TablaDescuentos'[Estado de descuento] = "Anulado"
     )
 
-VAR DescuentosConcretadosEspeciales =
+VAR DescuentosConcretadosEspeciales = //Calculamos la cantidad de descuentos especiales concretados restando los anulados
     DescuentosAplicadosEspeciales - DescuentosAnuladosEspeciales
 
 RETURN
-DIVIDE(DescuentosConcretadosEspeciales, VentasConcretadas, BLANK()) * 100
+DIVIDE(DescuentosConcretadosEspeciales, VentasConcretadas, BLANK()) * 100 //Divide los descuentos especiales sobre las ventas concretadas, multiplicando por 100 para obtener el ratio
